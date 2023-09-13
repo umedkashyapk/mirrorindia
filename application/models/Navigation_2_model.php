@@ -85,7 +85,7 @@ class Navigation_model extends CI_Model
             return $this->page_model->get_page_by_id($parent_id);
         }
         if ($type == "category") {
-            return $this->category_model->get_category($parent_id);
+            return $this->category_model->get_subcategories($parent_id);
         }
     }
 
