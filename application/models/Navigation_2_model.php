@@ -64,7 +64,7 @@ class Navigation_model extends CI_Model
                     $this->db->update('pages', $data);
                 }
             } elseif ($menu_item->item_type == 'category') {
-                $category = $this->category_model->get_category($menu_item->item_id);
+                $category = $this->category_model->get_sub_categories($menu_item->item_id);
                 if (!empty($category)) {
                     $data = array(
                         'parent_id' => clean_number($menu_item->parent_id),
@@ -85,7 +85,7 @@ class Navigation_model extends CI_Model
             return $this->page_model->get_page_by_id($parent_id);
         }
         if ($type == "category") {
-            return $this->category_model->get_category($parent_id);
+            return $this->category_model->get_subcategories($parent_id);
         }
     }
 
