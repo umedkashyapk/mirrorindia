@@ -64,7 +64,7 @@ class Navigation_model extends CI_Model
                     $this->db->update('pages', $data);
                 }
             } elseif ($menu_item->item_type == 'category') {
-                $category = $this->category_model->get_sub_categories($menu_item->item_id);
+                $category = $this->category_model->get_categories($menu_item->item_id);
                 if (!empty($category)) {
                     $data = array(
                         'parent_id' => clean_number($menu_item->parent_id),
