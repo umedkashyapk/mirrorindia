@@ -14,10 +14,11 @@ $menu_limit = $this->general_settings->menu_limit; ?>
                     $i = 1;
                     if (!empty($this->menu_links)):
                         foreach ($this->menu_links as $item):
-                            
-                            if ($item->item_visibility == 1 && $item->item_location == "maini" && $item->item_parent_id == "0"):
+    
+                            if ($item->item_visibility == 0 && $item->item_location == "main" && $item->item_parent_id == "0"):
                                 
                                 if ($i < $menu_limit):
+                                   
                                     $sub_links = get_sub_menu_links($this->menu_links, $item->item_id, $item->item_type);
                                     if ($item->item_type == "category") {
                                         if (!empty($sub_links)) {
@@ -29,8 +30,12 @@ $menu_limit = $this->general_settings->menu_limit; ?>
 
                                         }
                                     } else {
-                                        if (!empty($sub_links)): ?>
-                                    
+                                        if (!empty($sub_links)):
+                                            
+                                          
+                                        
+                                        ?>
+                                             
                                             <li class="dropdown <?= (uri_string() == $item->item_slug) ? 'active' : ''; ?>">
                                                 <a class="dropdown-toggle disabled no-after" data-toggle="dropdown" href="<?= generate_menu_item_url($item); ?>">
                                                     <?= html_escape($item->item_name); ?>
@@ -64,7 +69,10 @@ $menu_limit = $this->general_settings->menu_limit; ?>
                             endif;
                         endforeach;
                     endif; ?>
-                    <?php if ($total_item >= $menu_limit): ?>
+                    <?php 
+                        //echo $menu_limit; die;
+                        
+                    if ($total_item >= $menu_limit): ?>
                         <li class="dropdown relative">
                             <a class="dropdown-toggle dropdown-more-icon" data-toggle="dropdown" href="#">
                                 <i class="icon-ellipsis-h"></i>
@@ -73,7 +81,7 @@ $menu_limit = $this->general_settings->menu_limit; ?>
                                 <?php $i = 1;
                                 if (!empty($this->menu_links)):
                                     foreach ($this->menu_links as $item):
-                                        if ($item->item_visibility == 1 && $item->item_location == "main" && $item->item_parent_id == "0"):
+                                        if ($item->item_visibility == 1 && $item->item_location == "maini" && $item->item_parent_id == "0"):
                                             if ($i >= $menu_limit):
                                                 $sub_links = get_sub_menu_links($this->menu_links, $item->item_id, $item->item_type);
                                                 if (!empty($sub_links)): ?>

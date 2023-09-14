@@ -8,6 +8,7 @@ class Post_admin_model extends CI_Model
         $data = array(
             'lang_id' => $this->input->post('lang_id', true),
             'title' => trim($this->input->post('title', false)),
+            'state' => trim($this->input->post('state', false)),
             'title_slug' => $this->input->post('title_slug', true),
             'summary' => $this->input->post('summary', false),
             'category_id' => $this->input->post('category_id', true),

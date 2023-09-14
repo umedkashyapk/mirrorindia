@@ -12,8 +12,7 @@ class Navigation_model extends CI_Model
             'page_order' => $this->input->post('page_order', true),
             'visibility' => $this->input->post('visibility', true),
             'parent_id' => $this->input->post('parent_id', true),
-            'location' => "main",
-            'location' => "maini",
+            'location' => "mini",
             'page_type' => "link",
         );
         echo hello ; die();
@@ -64,7 +63,7 @@ class Navigation_model extends CI_Model
                     $this->db->update('pages', $data);
                 }
             } elseif ($menu_item->item_type == 'category') {
-                $category = $this->category_model->get_category($menu_item->item_id);
+                $category = $this->category_model->get_sub_categoriesg($menu_item->item_id);
                 if (!empty($category)) {
                     $data = array(
                         'parent_id' => clean_number($menu_item->parent_id),
